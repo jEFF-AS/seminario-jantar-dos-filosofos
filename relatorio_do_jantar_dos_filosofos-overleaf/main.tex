@@ -1,0 +1,126 @@
+\documentclass[12pt,a4paper,twoside]{article}
+
+% Configurações:
+
+\input{conf/texto.tex}
+\input{conf/matematica.tex}
+\input{conf/ciencia.tex}
+\input{conf/ambientes.tex}
+
+% Para citações:
+
+\usepackage[brazilian,hyperpageref]{backref}
+\usepackage[alf]{abntex2cite}
+
+% EDITE A PARTIR DAQUI:
+
+\def \tituloportugues {RESOLUÇÃO DO PROBLEMA DO JANTAR DOS FILÓSOFOS}  % Título. [EDITAR]
+\def \subtitulo {SEMINÁRIO DE COMPUTAÇÃO CONCORRENTE E DESTRIBUÍDA}  % Título em inglês. [EDITAR]
+\setcounter{page}{1} % página inicial do relatório
+\def \nomeedital {UniAtenas}
+\def \nomerelatorio {Relatório Final do Seminário}
+\def \tema {Mutex e Semáforos}
+\def \coordenadas {\textit{Centro Universitário Atenas}, Paracatu, 2025.} % Título em inglês. [EDITAR]
+\def \paginainternet {https://www.atenas.edu.br/uniatenas/atenas}
+\definecolor{cortextoquadro}{RGB}{0,58,112} % Cor do texto dos quadros do leiaute.
+%\definecolor{cortextoquadro}{RGB}{0,132,61}
+\definecolor{corfundoquadro}{RGB}{200,200,200} % Cor de fundo dos quadros do leiaute.
+\def \fontetexto {\bfseries} % Configurações de fonte para textos dentro dos quadros do leiaute.
+\def \logorevista {figs/logoUniatenas.png} % Defina o arquivo do logotipo.
+\def \larguralogo {2.3cm} % Defina a largura com que o logotipo aparecerá na capa.
+
+% As configurações de layout estão no arquivo mostrado abaixo:
+\input{conf/layout.tex} % Não mexa nesta linha!
+
+% Coloque abaixo os nomes dos autores e o número de suas instituições:
+
+\author[1]{Eduardo}
+\author[2]{Jéferson}
+\author[3]{leicimara}
+
+\affil[1]{Centro Universitario Atenas.}
+
+% Ajustes diversos antes de começar o documento (últimos preparativos),
+% tais como atribuição da variável "title", configurações para resolver erros de compilação etc.
+
+\input{conf/ultimos-preparativos.tex}
+
+%-----------------------------
+
+% Aqui damos início ao documento.
+
+\begin{document}
+
+\maketitle
+
+\thispagestyle{capa}
+
+% Resumo e palavras-chave. 
+
+\hrule
+
+\selectlanguage{portuges}
+\begin{abstract}
+\noindent
+\input{texto/resumo.tex} % [EDITAR] %
+\vspace{2\baselineskip}
+\palavraschave{mutex, semáforo, sincronização, paralelismo.} % [EDITAR] %
+\end{abstract}
+\vspace{5mm}
+
+\hrule
+
+\selectlanguage{portuges}
+
+\section{Introdução}
+    \input{texto/introducao.tex}
+
+\section{Fundamentação Teórica}
+    \input{texto/analise.tex}
+
+\section{Metodologias}
+    \input{texto/metodologia.tex}
+
+\section{Implementação}
+    \input{texto/implementacao.tex}
+
+\section{Código}
+    \input{texto/codigos.tex}
+
+\subsection{Tecnologias Utilizadas}
+    \input{texto/tecnologias.tex}
+
+\section{Discussão de Resultados}
+    \input{texto/discussao.tex}
+
+\section{Resultados}
+    \input{texto/resultados.tex}
+
+\section{Conclusão}
+    \input{texto/conclusao.tex}
+
+
+\begin{thebibliography}{12}
+    \bibitem{uepg2021}
+    Aluno SO UEPG. Solução do Problema dos Filósofos em Python. Universidade Estadual de Ponta Grossa, 2021. Disponível em: <https://deinfo.uepg.br/~alunoso/2021/SO/Filosofos_python/>. Acesso em: 16 set. 2025.
+    
+    \bibitem{geeksforgeeks_mutex}
+    GeeksforGeeks Contributors. Mutex vs Semaphore. GeeksforGeeks, 2023. Disponível em: <https://www.geeksforgeeks.org/operating-systems/mutex-vs-semaphore/>. Acesso em: 16 set. 2025.
+    
+    \bibitem{stackoverflow_mutex}
+    Stack Overflow Community. What is the Difference Between Lock, Mutex and Semaphore. Stack Overflow, 2009. Disponível em: <https://stackoverflow.com/questions/2332765/what-is-the-difference-between-lock-mutex-and-semaphore>. Acesso em: 16 set. 2025.
+    
+    \bibitem{geeksforgeeks_dining}
+    GeeksforGeeks Contributors. Dining Philosopher Problem Using Semaphores. GeeksforGeeks, 2023. Disponível em: <https://www.geeksforgeeks.org/operating-systems/dining-philosopher-problem-using-semaphores/>. Acesso em: 16 set. 2025.
+    
+    \bibitem{fiveable_semaphores}
+    Fiveable Team. Semaphores, Mutexes, and Monitors. Fiveable, 2021. Disponível em: <https://fiveable.me/operating-systems/unit-6/semaphores-mutexes-monitors/study-guide/S4jiSv0NbbMFRCtj>. Acesso em: 16 set. 2025.
+    
+    \bibitem{medium_deadlock}
+    Tiset, Sylvain. Understanding Mutexes and Semaphores: Preventing Deadlocks and Starvation in Concurrent Programming. Medium, 2023. Disponível em: <https://medium.com/@sylvain.tiset/understanding-mutexes-and-semaphores-preventing-deadlocks-and-starvation-in-concurrent-programming-6bc477b7b7a9>. Acesso em: 16 set. 2025.
+    
+    \bibitem{codegym_mutex}
+    CodeGym Team. What's the Difference Between a Mutex, a Monitor, and a Semaphore. CodeGym, 2023. Disponível em: <https://codegym.cc/groups/posts/220-whats-the-difference-between-a-mutex-a-monitor-and-a-semaphore>. Acesso em: 16 set. 2025.
+\end{thebibliography}
+
+\end{document}

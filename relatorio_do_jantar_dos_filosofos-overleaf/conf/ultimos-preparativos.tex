@@ -1,0 +1,45 @@
+\renewcommand\Authsep{, \quad }
+\renewcommand\Authand{, }
+\renewcommand\Authands{, \quad }
+
+\renewcommand*{\Affilfont}{\normalsize\normalfont}
+\renewcommand*{\Authfont}{\scshape}
+
+\title{%
+    \vspace{-15mm}%
+    \fontsize{20pt}{26pt}%
+    \selectfont\textbf{\tituloportugues} \\
+    \vspace{1ex}
+    \fontsize{14pt}{20pt}\selectfont\textbf{\color{gray}\subtitulo}%
+} % Título.
+\date{}
+
+% Comando para adicionar fonte de figuras e semelhantes:
+
+\newcommand{\source}[1]{\captionsetup{singlelinecheck=false,justification=justified}\caption*{\footnotesize \noindent Fonte: {#1}}}
+
+% Para resolver conflito do verbatim:
+
+\usepackage{tikz,everypage}
+\makeatletter
+\AtBeginDocument{%
+  \AddEverypageHook{%
+    \small    
+    \catcodetable  \catcodetable@latex %
+% Descomentar abaixo para colocar números nas linhas:
+%    \begin{tikzpicture}[remember picture,overlay]
+%      \path (current page.north west) --  (current page.south west)
+%            \foreach \i in {1,...,\fakelinenos}
+%               { node [pos={(\i-.5)/\fakelinenos},
+%                  xshift=\fakelinenoshift, line number style] {\i} }  ;
+%    \end{tikzpicture}%
+  }
+}
+\makeatother    
+\tikzset{%
+  line numbers/.store in=\fakelinenos,
+  line numbers=72,
+  line number shift/.store in=\fakelinenoshift,
+  line number shift=5mm,
+  line number style/.style={text=gray},
+}

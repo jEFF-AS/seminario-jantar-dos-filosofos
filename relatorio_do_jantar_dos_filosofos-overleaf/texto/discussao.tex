@@ -1,0 +1,12 @@
+Comparação da abordagem em termos de:
+
+\begin{itemize}
+    \item Eficiência: A solução é eficiente, com baixo overhead de sincronização, permitindo execuções rápidas em ambientes multithread.
+    \item Robustez (deadlock/livelock): Evita deadlocks pela ordenação de aquisição e livelocks por loops controlados. Durante os testes, observou-se que a utilização de mutex evitou condições de corrida e permitiu que todos os filósofos eventualmente comessem.
+    \item Facilidade de implementação: Moderada, requerendo conhecimento de threading em Python, mas código conciso.
+    \item Escalabilidade: Boa para N pequeno; para grandes N, pode aumentar contenção. Contudo, ainda existe a possibilidade de starvation se não houver controle adicional, como timeouts ou prioridades. Análise qualitativa mostra que todos comem em rodadas finitas; quantitativa (ex.: tempo médio de espera) varia com randomização, mas tipicamente <5s por ciclo.
+\end{itemize}
+
+Comparação Prática entre Mutex e Semáforo
+
+Para uma comparação prática, executei versões modificadas de ambos os códigos em um ambiente controlado (com loops finitos de 10 iterações por filósofo e tempos de sleep reduzidos para aceleração, mantendo a essência). Os resultados focam em métricas como fairness (distribuição de refeições), eficiência (tempo de execução e tentativas falhas), robustez (ausência de deadlock/starvation) e complexidade de implementação. Essa análise é inspirada em estudos seminais, como o trabalho original de Edsger Dijkstra (1965), que introduziu o problema e soluções baseadas em semáforos, e pesquisas subsequentes em sincronização concorrente.

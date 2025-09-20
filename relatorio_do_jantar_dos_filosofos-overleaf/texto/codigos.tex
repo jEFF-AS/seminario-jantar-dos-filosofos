@@ -1,0 +1,118 @@
+Código com Solução Usando Mutex
+
+\begin{verbatim}
+from random import uniform
+from time import sleep
+from threading import Thread, Lock
+
+pratos = [0, 0, 0, 0, 0]  # 0 = Não comeu, 1 = Já comeu
+
+class Filosofo(Thread):
+    execute = True  # variável para realizar a execução
+
+    def __init__(self, nome, hashi_esquerda, hashi_direita): 
+        Thread.__init__(self)
+        self.nome = nome
+        self.hashi_esquerda = hashi_esquerda
+        self.hashi_direita = hashi_direita
+
+    def run(self):
+        """ Sobrescrita de Thread, a função run definirá o que irá acontecer
+        após chamar o método start() na instância criada. """
+        while self.execute:
+            print(f"\n {self.nome} está pensando")
+            sleep(uniform(5, 15))
+            self.comer()
+
+    def comer(self):
+        """
+        Pega o hashi 1 e tenta pegar o hashi 2. Se o hashi 2 estiver livre,
+        o ele janta e solta os dois hashis em seguida,senão ele desiste de
+        comer e continua pensando.
+        """
+        hashi1, hashi2 = self.hashi_esquerda, self.hashi_direita
+
+        while self.execute:  # enquanto tiver executando
+            hashi1.acquire(True)  # tenta pegar o primeiro hashi
+            locked = hashi2.acquire(False)  # verifica se o segundo hashi está livre
+            if locked:
+                break
+            hashi1.release()  # libera o hashi1
+        else:
+            return  # volta a pensar
+
+        print(f"\n {self.nome} começou a comer")
+        sleep(uniform(5, 10))
+        print(f"\n {self.nome} parou de comer")
+        pratos[nomes.index(self.nome)] += 1  # contabiliza o número de vezes 
+        que cada filosofo comeu
+        print(pratos)
+        hashi1.release()  # libera o hashi1
+        hashi2.release()  # libera o hashi2
+
+nomes = ['Aristóteles', 'Platão', 'Sócrates', 'Pitágoras', 'Demócrito']
+hashis = [Lock() for _ in range(5)]
+mesa = [Filosofo(nomes[i], hashis[i % 5], hashis[(i + 1) % 5]) for i in range(5)]
+for _ in range(50):
+    Filosofo.execute = True  # Inicia a execução
+    for filosofo in mesa:
+        try:
+            filosofo.start()  # inicia o objeto de thread criado.
+            sleep(2)
+        except RuntimeError:  # Se a thread já tiver sido iniciada
+            pass
+    sleep(uniform(5, 15))
+    Filosofo.execute = False  # Para a execução
+\end{verbatim}
+
+Código com Solução Usando Semáforos
+
+\begin{verbatim}
+import threading
+import time
+import random
+
+# Número de filósofos
+N = 5
+
+# Semáforos binários para os hashis (equivalente a mutex para exclusão mútua)
+hashis = [threading.Semaphore(1) for _ in range(N)]
+
+# Semáforo de contagem para evitar deadlock (permite no máximo N-1 filósofos 
+tentarem comer) multiplex = threading.Semaphore(N - 1)
+
+# Contador de pratos comidos por cada filósofo
+pratos = [0] * N
+
+# Nomes dos filósofos (para consistência com seu código)
+nomes = ['Aristóteles', 'Platão', 'Sócrates', 'Pitágoras', 'Demócrito']
+
+def filosofo(i):
+    while True:
+        # Pensando
+        print(f"\n {nomes[i]} está pensando")
+        time.sleep(random.uniform(5, 15))
+        
+        # Tentando comer
+        multiplex.acquire()  # Entra na "sala" (limita a N-1)
+        hashis[i].acquire()  # Pega hashi esquerdo
+        hashis[(i + 1) % N].acquire()  # Pega hashi direito
+        
+        # Comendo
+        print(f"\n {nomes[i]} começou a comer")
+        time.sleep(random.uniform(5, 10))
+        print(f"\n {nomes[i]} parou de comer")
+        pratos[i] += 1
+        print(pratos)
+        
+        # Libera hashis e multiplex
+        hashis[i].release()
+        hashis[(i + 1) % N].release()
+        multiplex.release()
+
+# Criando e iniciando as threads
+threads = [threading.Thread(target=filosofo, args=(i,)) for i in range(N)]
+for t in threads:
+    t.start()
+    
+\end{verbatim}

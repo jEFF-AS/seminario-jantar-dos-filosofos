@@ -1,0 +1,55 @@
+\usepackage{mdframed}
+\usepackage{environ} % usado nas definições
+\theoremstyle{definition}
+
+%%% Definição:
+\mdfdefinestyle{definitionSty}{backgroundcolor=blue!10, linewidth=0pt, innerleftmargin=3ex, innerrightmargin=3ex, innertopmargin=1ex, innerbottommargin=1ex, innermargin =0, outermargin =0}
+\newcounter{definitionCounter}[section]
+\numberwithin{definitionCounter}{section}
+\newmdtheoremenv[style=definitionSty]{definition}[definitionCounter]{Defini\c{c}\~{a}o}
+
+%%% Teorema:
+\mdfdefinestyle{theoremSty}{backgroundcolor=yellow!10, linewidth=0pt, innerleftmargin=3ex, innerrightmargin=3ex, innertopmargin=1ex, innerbottommargin=1ex, innermargin=0, outermargin=0}
+\newcounter{theoremCounter}[section] 
+\numberwithin{theoremCounter}{section}
+\newmdtheoremenv[style=theoremSty]{theorem}[theoremCounter]{Teorema}
+
+%%% Propriedade:
+\mdfdefinestyle{theoremSty}{backgroundcolor=green!6, linewidth=0pt, innerleftmargin=3ex, innerrightmargin=3ex, innertopmargin=1ex, innerbottommargin=1ex, innermargin=0, outermargin=0}
+\newcounter{propertyCounter}[section] 
+\numberwithin{propertyCounter}{section}
+\newmdtheoremenv[style=theoremSty]{property}[propertyCounter]{Propriedade}
+
+%%% Lema
+\mdfdefinestyle{lemaSty}{backgroundcolor=yellow!8, linewidth=0pt, innerleftmargin=3ex, innerrightmargin=3ex, innertopmargin=1ex, innerbottommargin=1ex, innermargin=0, outermargin=0}
+\newcounter{lemaCounter}[section] 
+\numberwithin{lemaCounter}{section}
+\newmdtheoremenv[style=lemaSty]{lema}[lemaCounter]{Lema}
+
+%%% Demonstração:
+\mdfdefinestyle{demonstrationSty}{backgroundcolor=orange!20, linewidth=0pt, innerleftmargin=3ex, innerrightmargin=3ex, innertopmargin=1ex, innerbottommargin=1ex, innermargin =+1cm, outermargin =+1cm}
+\newcounter{demonstrationCounter}[section]
+\numberwithin{demonstrationCounter}{section}
+\newmdtheoremenv[style=demonstrationSty]{demonstration}[demonstrationCounter]{Demonstra\c{c}\~{a}o}
+
+%%% Axioma:
+\mdfdefinestyle{axiomSty}{backgroundcolor=yellow!10, linewidth=0pt, innerleftmargin=3ex, innerrightmargin=3ex, innertopmargin=1ex, innerbottommargin=1ex, innermargin=0, outermargin=0}
+\newcounter{axiomCounter}[section] 
+\numberwithin{axiomCounter}{section}
+\newmdtheoremenv[style=axiomSty]{axiom}[axiomCounter]{Axioma}
+
+%%% Exemplo:
+\mdfdefinestyle{exampleSty}{backgroundcolor=gray!10, linewidth=0pt, innerleftmargin=3ex, innerrightmargin=3ex, innertopmargin=1ex, innerbottommargin=1ex,  innermargin =+0.5cm, outermargin =+0.5cm}
+\newcounter{exampleCounter}[section]
+\numberwithin{exampleCounter}{section}
+\newmdtheoremenv[style=exampleSty]{example}[exampleCounter]{Exemplo}
+
+%%% Nota:
+\mdfdefinestyle{noteSty}{backgroundcolor=green!5, linewidth=1pt, innerleftmargin=3ex, innerrightmargin=3ex, innertopmargin=2ex, innerbottommargin=2ex, innermargin =+0.5cm, outermargin =+0.5cm}
+\newcounter{noteCounter}[section]
+\numberwithin{noteCounter}{section}
+\newmdtheoremenv[style=noteSty]{note}[noteCounter]{Nota}
+
+%%% Argumento
+\mdfdefinestyle{argumentSty}{backgroundcolor=yellow!10, linewidth=0pt, innerleftmargin=3ex, innerrightmargin=3ex, innertopmargin=1ex, innerbottommargin=1ex, innermargin=0, outermargin=0} 
+\newmdtheoremenv[style=argumentSty]{argument}{}
